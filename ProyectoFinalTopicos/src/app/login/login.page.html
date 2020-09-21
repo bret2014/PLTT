@@ -5,18 +5,18 @@
 </ion-header>
 
 <ion-content>
-  <form class="formulario">
+  <form [formGroup]="formGroup" (ngSubmit)="onLogin(email, password)" class="formulario">
     <ion-item lines="full">
       <ion-label position="floating">Email</ion-label>
-      <ion-input type="text" #email required></ion-input>
+      <ion-input type="text" #email required formControlName="emailControl"  [(ngModel)]="correo"></ion-input>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" #password required></ion-input>
+      <ion-input type="password" #password required formControlName="passwordControl" [(ngModel)]="contr"></ion-input>
     </ion-item>
     <ion-row>
       <ion-col>
-        <ion-button type="submit" (click)="onLogin(email, password)" expand="block">Login</ion-button>
+        <ion-button [disabled]="!formGroup.valid" type="submit" expand="block">Login</ion-button>
       </ion-col>
     </ion-row>
     <ion-row>

@@ -16,7 +16,8 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 export class LoginPage implements OnInit {
   todos: Usuario[];
   formGroup: FormGroup; 
-  
+  correo ="";
+  contr="";
   constructor(private authSvc: AuthService, private router: Router,private menu: MenuController,private geolocation: Geolocation,
     private nativeGeocoder: NativeGeocoder,public formBuilder: FormBuilder) {
       this.menu.enable(false, 'first');
@@ -25,6 +26,7 @@ export class LoginPage implements OnInit {
    }
 
   ngOnInit() {
+   
   }
 
   crearvalidaciones(){
@@ -57,6 +59,8 @@ export class LoginPage implements OnInit {
     if (isVerified) {
       this.authSvc.verficarTipo(correo).subscribe((todos) =>{
         this.todos = todos;
+        this.correo ="";
+        this.contr="";
           if(this.todos[0].tipo=="Invitado"){
             this.router.navigate(['home']);
           }else{
